@@ -13,8 +13,11 @@ class Approvers {
     @Column()
     approver_sequence: number
 
+    @Column({ nullable: true })
+    approved: boolean
+
     @Column()
-    approved: string
+    reason: string
 
     @Column()
     approved_date: string
@@ -22,11 +25,12 @@ class Approvers {
     @ManyToOne(type => Submission, submission => submission.approvers)
     submission: Submission
 
-    constructor(approvers_primary: number, person_id: string, approver_sequence: number, approved: string, approved_date: string, submission: Submission) {
+    constructor(approvers_primary: number, person_id: string, approver_sequence: number, approved: boolean, reason: string, approved_date: string, submission: Submission) {
         this.approvers_primary = approvers_primary
         this.person_id = person_id
         this.approver_sequence = approver_sequence
         this.approved = approved
+        this.reason = reason
         this.approved_date = approved_date
         this.submission = submission
     }
